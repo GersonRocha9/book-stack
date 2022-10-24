@@ -17,7 +17,7 @@ const schema = yup
   })
   .required();
 
-const Home = () => {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
@@ -48,4 +48,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SignUp;

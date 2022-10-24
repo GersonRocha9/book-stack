@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Title } from './styles';
 
-const Home = () => {
+const Books = () => {
   return (
     <Container>
       <Title>Books</Title>
@@ -11,4 +11,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Books;
