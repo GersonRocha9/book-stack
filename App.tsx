@@ -1,10 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-
-import Home from "./src/screens/Home";
-import Login from "./src/screens/Login";
-import SignUp from "./src/screens/SignUp";
+import { Home, Login, SignUp } from "./src/screens";
 
 const Tab = createNativeStackNavigator();
 

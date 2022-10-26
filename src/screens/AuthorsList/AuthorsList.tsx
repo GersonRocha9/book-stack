@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList } from "react-native";
-import AuthorCard from "../../components/AuthorCard";
+import { AuthorCard } from "../../components";
 
 import { Container, Title } from "./styles";
 
