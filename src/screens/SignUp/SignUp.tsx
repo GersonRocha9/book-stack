@@ -1,49 +1,86 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { Feather } from "@expo/vector-icons";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
 
-import { AlertText, Button, ButtonContainer, Container, FormContainer, Input, Title } from './styles';
+import {
+  Button,
+  ButtonsContainer,
+  Container,
+  FormContainer,
+  Input,
+  NoAccountButton,
+  NoAccountContainer,
+  NoAccountText,
+  NoAccountTextButton,
+  Subtitle,
+  Text,
+  Title,
+} from "./styles";
 
-interface IFormInputs {
-  bookName: string;
-  authorName: string;
+interface SignUpFormDataProps {
+  email: string;
+  confirmEmail: string;
+  password: string;
+  confirmPassword: string;
 }
 
-const schema = yup
-  .object({
-    firstName: yup.string().required(),
-    age: yup.number().positive().integer().required(),
-  })
-  .required();
+const SignUp = ({ navigation }: any) => {
+  const { control, handleSubmit } = useForm<SignUpFormDataProps>();
 
-const SignUp = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInputs>({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit = (data: IFormInputs) => console.log(data);
+  const handleSignUp = (data: SignUpFormDataProps) => {
+    console.log(data);
+  };
 
   return (
     <Container>
-      <Title>Books</Title>
+      <Title>Cadastrar</Title>
+      <Subtitle>Preencha os dados abaixo para começar a usar o app.</Subtitle>
 
-      <FormContainer onSubmit={handleSubmit(onSubmit)}>
-        <Input placeholder="Digite o nome do livro" {...register("bookName")} />
-        <AlertText>{errors.bookName?.message}</AlertText>
-        <Input placeholder="Digite o nome do Autor" {...register("authorName")} />
-        <AlertText>{errors.authorName?.message}</AlertText>
+      <FormContainer>
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange } }) => <Input placeholder="E-mail" onChangeText={onChange} />}
+        />
 
-        <ButtonContainer>
-          <Button type="submit">
-            <Title>Salvar</Title>
-          </Button>
-        </ButtonContainer>
+        <Controller
+          control={control}
+          name="confirmEmail"
+          render={({ field: { onChange } }) => <Input placeholder="Confirme o e-mail" onChangeText={onChange} />}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange } }) => <Input placeholder="Senha" onChangeText={onChange} secureTextEntry />}
+        />
+
+        <Controller
+          control={control}
+          name="confirmPassword"
+          render={({ field: { onChange } }) => (
+            <Input placeholder="Confirme a senha" onChangeText={onChange} secureTextEntry />
+          )}
+        />
       </FormContainer>
+
+      <ButtonsContainer>
+        <Button onPress={handleSubmit(handleSignUp)}>
+          <Text>Cadastrar</Text>
+          <Feather name="arrow-right-circle" size={24} color="white" />
+        </Button>
+
+        <NoAccountContainer>
+          <NoAccountText>Já tem uma conta?</NoAccountText>
+          <NoAccountButton
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
+          >
+            <NoAccountTextButton>Entrar</NoAccountTextButton>
+          </NoAccountButton>
+        </NoAccountContainer>
+      </ButtonsContainer>
     </Container>
   );
 };

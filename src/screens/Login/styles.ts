@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -81,6 +81,7 @@ export const NoAccountText = styled.Text`
 export const NoAccountTextButton = styled.Text`
   color: tomato;
   font-size: 16px;
+  font-weight: bold;
 `;
 
 export const NoAccountButton = styled.TouchableOpacity`
