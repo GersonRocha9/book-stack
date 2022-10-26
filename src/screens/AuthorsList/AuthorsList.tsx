@@ -1,5 +1,5 @@
-import { FlatList } from "native-base";
 import React from "react";
+import { FlatList } from "react-native";
 import AuthorCard from "../../components/AuthorCard";
 
 import { Container, Title } from "./styles";
