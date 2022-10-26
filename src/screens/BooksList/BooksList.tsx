@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList } from "react-native";
-import BookCard from "../../components/BookCard";
+import { BookCard } from "../../components";
 import { Container, Title } from "./styles";
 
 const mockBooks = [
