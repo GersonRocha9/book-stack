@@ -6,7 +6,7 @@ import Home from "./src/screens/Home";
 import Login from "./src/screens/Login";
 import SignUp from "./src/screens/SignUp";
 
-const Stack = createNativeStackNavigator();
+const Tab = createNativeStackNavigator();
 
 export default function App() {
   // essa variável isLogged simula o estado de autenticação do usuário
@@ -16,16 +16,16 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
           {isLogged ? (
-            <Stack.Screen name="Home" component={Home} />
+            <Tab.Screen name="Home" component={Home} />
           ) : (
             <>
-              <Stack.Screen name="Login" component={Login} />
-              <Stack.Screen name="SignUp" component={SignUp} />
+              <Tab.Screen name="Login" component={Login} />
+              <Tab.Screen name="SignUp" component={SignUp} />
             </>
           )}
-        </Stack.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="dark" />
     </>
