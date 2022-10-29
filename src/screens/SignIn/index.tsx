@@ -3,7 +3,7 @@ import { styles } from "./styles";
 import { Image, Text, TextInput, View } from "react-native";
 import { Button } from "react-native-paper";
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC = ({ navigation }: any) => {
   const [email, setEmail] = React.useState("");
   const [emailValid, setEmailValid] = React.useState(true);
   const [password, setPassword] = React.useState("");
@@ -21,8 +21,7 @@ const SignIn: React.FC = () => {
 
   const checkPassword = () => {
     let valid: boolean;
-    var passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
 
     valid = passwordRegex.test(password);
     setPasswordValid(valid);
@@ -34,16 +33,9 @@ const SignIn: React.FC = () => {
     if (checkEmail() && checkPassword()) return 0; // Chama e passa input pro BACK, espera a resposta e loga
   };
 
-  const onSignUp = () => {
-    // Navega para tela SignUp
-  };
-
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../../assets/book-stack-logo.png")}
-        style={styles.logo}
-      />
+      <Image source={require("../../../assets/book-stack-logo.png")} style={styles.logo} />
 
       {/* INPUT DE EMAIL */}
       <Text style={styles.inputLabel}>Email</Text>
@@ -54,13 +46,7 @@ const SignIn: React.FC = () => {
         keyboardType="email-address"
         style={styles.inputField}
       />
-      <Text
-        style={[
-          styles.inputInvalid,
-          { display: emailValid ? "none" : "flex" },
-        ]}>
-        Formato Invalido
-      </Text>
+      <Text style={[styles.inputInvalid, { display: emailValid ? "none" : "flex" }]}>Formato Invalido</Text>
 
       {/* INPUT DE SENHA */}
       <Text style={styles.inputLabel}>Senha</Text>
@@ -72,27 +58,25 @@ const SignIn: React.FC = () => {
         secureTextEntry={true}
         style={styles.inputField}
       />
-      <Text
-        style={[
-          styles.inputInvalid,
-          { display: passwordValid ? "none" : "flex" },
-        ]}>
-        Formato Invalido
-      </Text>
+      <Text style={[styles.inputInvalid, { display: passwordValid ? "none" : "flex" }]}>Formato Invalido</Text>
 
       <Button
         onPress={onLogin}
         style={styles.buttonStyle}
         labelStyle={styles.buttonLabel}
-        contentStyle={styles.buttonContent}>
+        contentStyle={styles.buttonContent}
+      >
         Logar
       </Button>
 
       <Button
-        onPress={onSignUp}
+        onPress={() => {
+          navigation.navigate("SignUp");
+        }}
         style={styles.borderlessButtonStyle}
         labelStyle={styles.borderlessButtonLabel}
-        contentStyle={styles.borderlessButtonContent}>
+        contentStyle={styles.borderlessButtonContent}
+      >
         Cadastre-se
       </Button>
     </View>

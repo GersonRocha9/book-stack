@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { Home, Login, SignUp } from "./src/screens";
+import { Home, SignIn, SignUp } from "./src/screens";
 
 const Tab = createNativeStackNavigator();
 
@@ -18,7 +18,7 @@ export default function App() {
             <Tab.Screen name="Home" component={Home} />
           ) : (
             <>
-              <Tab.Screen name="Login" component={Login} />
+              <Tab.Screen name="SignIn" component={SignIn} />
               <Tab.Screen name="SignUp" component={SignUp} />
             </>
           )}
