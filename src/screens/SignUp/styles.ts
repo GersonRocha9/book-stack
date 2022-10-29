@@ -6,6 +6,8 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  title: {},
+
   inputLabel: {},
 
   inputField: {},

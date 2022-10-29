@@ -54,7 +54,7 @@ const SignUp: React.FC = () => {
 
   const completeCheck = () => {
     let valid: boolean = true;
-    
+
     if (!checkEmail()) valid = false;
     if (!checkConfirmEmail()) valid = false;
     if (!checkPassword()) valid = false;
@@ -73,6 +73,7 @@ const SignUp: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Cadastre-se abaixo</Text>
 
       {/* INPUT DE EMAIL */}
       <Text style={styles.inputLabel}>Email</Text>
