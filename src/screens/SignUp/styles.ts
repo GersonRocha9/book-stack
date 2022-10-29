@@ -1,83 +1,28 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native";
 
-export const Container = styled.SafeAreaView`
-  flex: 1;
-  background-color: #f1f5f9;
-  align-items: center;
-`;
+export const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    alignItems: "center",
+  },
 
-export const Title = styled.Text`
-  font-size: 32px;
-  font-weight: bold;
-  margin-top: 60px;
-  margin-bottom: 10px;
-`;
+  logo: {},
 
-export const Subtitle = styled.Text`
-  font-size: 16px;
-  margin-bottom: 20px;
-`;
+  inputLabel: {},
 
-export const FormContainer = styled.View`
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0 20px;
-`;
+  inputField: {},
 
-export const Input = styled.TextInput`
-  width: 100%;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 0 24px;
-  font-size: 16px;
-  margin-bottom: 8px;
-`;
+  inputInvalid: {},
 
-export const ButtonsContainer = styled.View`
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-  flex: 1;
-`;
+  buttonStyle: {},
 
-export const Button = styled.TouchableOpacity`
-  background-color: #1ed760;
-  width: 250px;
-  height: 50px;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-direction: row;
-`;
+  buttonLabel: {},
 
-export const Text = styled.Text`
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  margin-right: 10px;
-`;
+  buttonContent: {},
 
-export const NoAccountContainer = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
+  borderlessButtonStyle: {},
 
-export const NoAccountText = styled.Text`
-  color: #000;
-  font-size: 16px;
-`;
+  borderlessButtonLabel: {},
 
-export const NoAccountTextButton = styled.Text`
-  color: tomato;
-  font-size: 16px;
-  font-weight: bold;
-`;
-
-export const NoAccountButton = styled.TouchableOpacity`
-  margin-left: 5px;
-`;
+  borderlessButtonContent: {},
+});
