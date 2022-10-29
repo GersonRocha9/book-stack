@@ -54,9 +54,7 @@ const SignUp: React.FC = () => {
 
   const completeCheck = () => {
     let valid: boolean = true;
-
-    // Confirmar com o back se já existe o email na DB
-
+    
     if (!checkEmail()) valid = false;
     if (!checkConfirmEmail()) valid = false;
     if (!checkPassword()) valid = false;
@@ -75,10 +73,6 @@ const SignUp: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../../assets/book-stack-logo.png")}
-        style={styles.logo}
-      />
 
       {/* INPUT DE EMAIL */}
       <Text style={styles.inputLabel}>Email</Text>
