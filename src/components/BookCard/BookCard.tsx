@@ -13,10 +13,10 @@ import {
 } from "./styles";
 
 interface BooksListProps {
-  id: number;
-  author_id: number;
+  id?: number;
+  author_id?: number;
   title: string;
-  description: string;
+  description?: string;
   publication_date: string;
   isbn: string;
   cover_url: string;
