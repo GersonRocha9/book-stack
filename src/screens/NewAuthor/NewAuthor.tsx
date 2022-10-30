@@ -29,6 +29,7 @@ const NewAuthor = ({ navigation }: any) => {
   });
 
   const handleSaveAuthor = (data: NewAuthorProps) => {
+    navigation.navigate("Home");
     console.log(data);
   };
 

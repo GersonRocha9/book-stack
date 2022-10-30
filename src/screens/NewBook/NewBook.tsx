@@ -31,6 +31,7 @@ const NewBook = ({ navigation }: any) => {
   });
 
   const handleSaveBook = (data: NewBookProps) => {
+    navigation.navigate("Home");
     console.log(data);
   };
 

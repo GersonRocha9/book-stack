@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 
 const Home = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { height: 100 } }}>
+    <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { height: 90 } }}>
       <Tab.Screen
         name="Livros"
         component={BooksList}
