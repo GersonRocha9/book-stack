@@ -1,21 +1,25 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { Home, SignIn, SignUp } from "./src/screens";
+import { Home, NewAuthor, NewBook, SignIn, SignUp } from "./src/screens";
 
 const Tab = createNativeStackNavigator();
 
 export default function App() {
   // essa variável isLogged simula o estado de autenticação do usuário
   // true = usuário está logado = <Home /> // false = usuário não está logado = <Login /> e <SignUp />
-  const isLogged = false;
+  const isLogged = true;
 
   return (
     <>
       <NavigationContainer>
         <Tab.Navigator screenOptions={{ headerShown: false }}>
           {isLogged ? (
-            <Tab.Screen name="Home" component={Home} />
+            <>
+              <Tab.Screen name="Home" component={Home} />
+              <Tab.Screen name="NewBook" component={NewBook} />
+              <Tab.Screen name="NewAuthor" component={NewAuthor} />
+            </>
           ) : (
             <>
               <Tab.Screen name="SignIn" component={SignIn} />

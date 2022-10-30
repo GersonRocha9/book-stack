@@ -12,3 +12,19 @@ export const Title = styled.Text`
   color: #333;
   font-weight: bold;
 `;
+
+export const NewAuthorButtonContainer = styled.View`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+`;
+
+export const NewAuthorButton = styled.TouchableOpacity`
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #7159c1;
+  align-items: center;
+  justify-content: center;
+`;

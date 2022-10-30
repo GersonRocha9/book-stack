@@ -1,8 +1,9 @@
 import React from "react";
 import { FlatList } from "react-native";
+import { Feather } from "@expo/vector-icons";
 import { AuthorCard } from "../../components";
 
-import { Container, Title } from "./styles";
+import { Container, NewAuthorButton, NewAuthorButtonContainer, Title } from "./styles";
 
 const mockAuthors = [
   {
@@ -54,10 +55,17 @@ const mockAuthors = [
   },
 ];
 
-const AuthorsList = () => {
+const AuthorsList = ({ navigation }: any) => {
   return (
     <Container>
       <Title>Confira os autores cadastrados: </Title>
+
+      <NewAuthorButtonContainer>
+        <NewAuthorButton onPress={() => navigation.navigate("NewAuthor")} activeOpacity={0.7}>
+          <Feather name="plus" size={30} color="white" />
+        </NewAuthorButton>
+      </NewAuthorButtonContainer>
+
       <FlatList
         data={mockAuthors}
         renderItem={({ item }) => (

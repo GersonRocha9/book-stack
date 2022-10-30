@@ -1,7 +1,8 @@
 import React from "react";
 import { FlatList } from "react-native";
 import { BookCard } from "../../components";
-import { Container, Title } from "./styles";
+import { Feather } from "@expo/vector-icons";
+import { Container, NewBookButton, NewBookButtonContainer, Title } from "./styles";
 
 const mockBooks = [
   {
@@ -66,10 +67,17 @@ const mockBooks = [
   },
 ];
 
-const BooksList = () => {
+const BooksList = ({ navigation }: any) => {
   return (
     <Container>
       <Title>Confira os livros cadastrados: </Title>
+
+      <NewBookButtonContainer>
+        <NewBookButton onPress={() => navigation.navigate("NewBook")}>
+          <Feather name="plus" size={30} color="white" />
+        </NewBookButton>
+      </NewBookButtonContainer>
+
       <FlatList
         data={mockBooks}
         renderItem={({ item }) => (
