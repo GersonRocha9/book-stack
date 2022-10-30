@@ -12,7 +12,7 @@ import {
 } from "./styles";
 
 interface AuthorListProps {
-  id: number;
+  id?: number;
   name: string;
   birthdate: string;
   profile_photo: string;
