@@ -6,23 +6,63 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  logo: {},
+  logo: {
+    width: 195,
+    height: 120,
+    marginTop: 100,
+    marginBottom: 50,
+  },
 
-  inputLabel: {},
+  ctInput: {
+    width: "100%",
+    paddingHorizontal: 20,
+    marginBottom: 30,
+  },
 
-  inputField: {},
+  inputLabel: {
+    fontSize: 16,
+    fontWeight: "400",
+    paddingLeft: 15,
+    paddingBottom: 5,
+  },
 
-  inputInvalid: {},
+  inputField: {
+    fontSize: 16,
+    fontWeight: "400",
+    borderWidth: 1,
+    borderRadius: 15,
+    paddingLeft: 15,
+    paddingVertical: 5,
+  },
 
-  buttonStyle: {},
+  inputInvalid: {
+    color: "red",
+    fontSize: 13,
+    fontWeight: "400",
+    paddingLeft: 15,
+    paddingTop: 5,
+  },
 
-  buttonLabel: {},
+  buttonStyle: {
+    backgroundColor: "black",
+    width: 150,
+    borderRadius: 15,
+    marginTop: 20,
+  },
 
-  buttonContent: {},
+  buttonLabel: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "500",
+  },
 
-  borderlessButtonStyle: {},
+  borderlessButtonStyle: {
+    marginTop: 20,
+  },
 
-  borderlessButtonLabel: {},
-
-  borderlessButtonContent: {},
+  borderlessButtonLabel: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "500",
+  },
 });

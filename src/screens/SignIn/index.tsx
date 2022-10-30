@@ -21,7 +21,8 @@ const SignIn: React.FC = ({ navigation }: any) => {
 
   const checkPassword = () => {
     let valid: boolean;
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
+    var passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
 
     valid = passwordRegex.test(password);
     setPasswordValid(valid);
@@ -30,42 +31,62 @@ const SignIn: React.FC = ({ navigation }: any) => {
   };
 
   const onLogin = () => {
-    if (checkEmail() && checkPassword()) return 0; // Chama e passa input pro BACK, espera a resposta e loga
+    if (checkEmail() && checkPassword()) {
+      // Chama e passa input pro BACK, espera a resposta e loga
+      navigation.navigate("Home");
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Image source={require("../../../assets/book-stack-logo.png")} style={styles.logo} />
+      <Image
+        source={require("../../../assets/book-stack-logo.png")}
+        style={styles.logo}
+      />
 
       {/* INPUT DE EMAIL */}
-      <Text style={styles.inputLabel}>Email</Text>
-      <TextInput
-        value={email}
-        onChangeText={(input) => setEmail(input)}
-        placeholder="Entre com seu email"
-        keyboardType="email-address"
-        style={styles.inputField}
-      />
-      <Text style={[styles.inputInvalid, { display: emailValid ? "none" : "flex" }]}>Formato Invalido</Text>
+      <View style={styles.ctInput}>
+        <Text style={styles.inputLabel}>Email</Text>
+        <TextInput
+          value={email}
+          onChangeText={(input) => setEmail(input)}
+          placeholder="Entre com seu email"
+          keyboardType="email-address"
+          style={styles.inputField}
+        />
+        <Text
+          style={[
+            styles.inputInvalid,
+            { display: emailValid ? "none" : "flex" },
+          ]}>
+          Formato Invalido
+        </Text>
+      </View>
 
       {/* INPUT DE SENHA */}
-      <Text style={styles.inputLabel}>Senha</Text>
-      <TextInput
-        value={password}
-        onChangeText={(input) => setPassword(input)}
-        placeholder="Entre com sua senha"
-        keyboardType="default"
-        secureTextEntry={true}
-        style={styles.inputField}
-      />
-      <Text style={[styles.inputInvalid, { display: passwordValid ? "none" : "flex" }]}>Formato Invalido</Text>
+      <View style={styles.ctInput}>
+        <Text style={styles.inputLabel}>Senha</Text>
+        <TextInput
+          value={password}
+          onChangeText={(input) => setPassword(input)}
+          placeholder="Entre com sua senha"
+          keyboardType="default"
+          secureTextEntry={true}
+          style={styles.inputField}
+        />
+        <Text
+          style={[
+            styles.inputInvalid,
+            { display: passwordValid ? "none" : "flex" },
+          ]}>
+          Formato Invalido
+        </Text>
+      </View>
 
       <Button
         onPress={onLogin}
         style={styles.buttonStyle}
-        labelStyle={styles.buttonLabel}
-        contentStyle={styles.buttonContent}
-      >
+        labelStyle={styles.buttonLabel}>
         Logar
       </Button>
 
@@ -74,9 +95,7 @@ const SignIn: React.FC = ({ navigation }: any) => {
           navigation.navigate("SignUp");
         }}
         style={styles.borderlessButtonStyle}
-        labelStyle={styles.borderlessButtonLabel}
-        contentStyle={styles.borderlessButtonContent}
-      >
+        labelStyle={styles.borderlessButtonLabel}>
         Cadastre-se
       </Button>
     </View>

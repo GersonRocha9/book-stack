@@ -1,6 +1,6 @@
 import React from "react";
 import { styles } from "./styles";
-import { Image, Text, TextInput, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import { Button } from "react-native-paper";
 
 const SignUp: React.FC = ({ navigation }: any) => {
@@ -34,7 +34,8 @@ const SignUp: React.FC = ({ navigation }: any) => {
 
   const checkPassword = () => {
     let valid: boolean;
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
+    var passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
 
     valid = passwordRegex.test(password);
     setPasswordValid(valid);
@@ -63,11 +64,10 @@ const SignUp: React.FC = ({ navigation }: any) => {
   };
 
   const onCreateAccount = () => {
-    if (completeCheck()) return 0; // Chama e passa input pro BACK, espera a resposta e cria conta
-  };
-
-  const onSignIn = () => {
-    // Navega para tela SignIn
+    if (completeCheck()) {
+      // Chama e passa input pro BACK, espera a resposta e cria conta
+      navigation.navigate("SignIn");
+    }
   };
 
   return (
@@ -75,61 +75,87 @@ const SignUp: React.FC = ({ navigation }: any) => {
       <Text style={styles.title}>Cadastre-se abaixo</Text>
 
       {/* INPUT DE EMAIL */}
-      <Text style={styles.inputLabel}>Email</Text>
-      <TextInput
-        value={email}
-        onChangeText={(input) => setEmail(input)}
-        placeholder="Insira um email"
-        keyboardType="email-address"
-        style={styles.inputField}
-      />
-      <Text style={[styles.inputInvalid, { display: emailValid ? "none" : "flex" }]}>Formato Invalido</Text>
+      <View style={styles.ctInput}>
+        <Text style={styles.inputLabel}>Email</Text>
+        <TextInput
+          value={email}
+          onChangeText={(input) => setEmail(input)}
+          placeholder="Insira um email"
+          keyboardType="email-address"
+          style={styles.inputField}
+        />
+        <Text
+          style={[
+            styles.inputInvalid,
+            { display: emailValid ? "none" : "flex" },
+          ]}>
+          Formato Invalido
+        </Text>
+      </View>
 
       {/* INPUT DE CONFIRMACAO DE EMAIL */}
-      <Text style={styles.inputLabel}>Confirme email</Text>
-      <TextInput
-        value={confirmEmail}
-        onChangeText={(input) => setConfirmEmail(input)}
-        placeholder="Confirme o email"
-        keyboardType="email-address"
-        style={styles.inputField}
-      />
-      <Text style={[styles.inputInvalid, { display: confirmEmailValid ? "none" : "flex" }]}>
-        Os emails não estão iguais
-      </Text>
+      <View style={styles.ctInput}>
+        <Text style={styles.inputLabel}>Confirme email</Text>
+        <TextInput
+          value={confirmEmail}
+          onChangeText={(input) => setConfirmEmail(input)}
+          placeholder="Confirme o email"
+          keyboardType="email-address"
+          style={styles.inputField}
+        />
+        <Text
+          style={[
+            styles.inputInvalid,
+            { display: confirmEmailValid ? "none" : "flex" },
+          ]}>
+          Os emails não estão iguais
+        </Text>
+      </View>
 
       {/* INPUT DE SENHA */}
-      <Text style={styles.inputLabel}>Senha</Text>
-      <TextInput
-        value={password}
-        onChangeText={(input) => setPassword(input)}
-        placeholder="Insira uma senha"
-        keyboardType="default"
-        secureTextEntry={true}
-        style={styles.inputField}
-      />
-      <Text style={[styles.inputInvalid, { display: passwordValid ? "none" : "flex" }]}>Formato Invalido</Text>
+      <View style={styles.ctInput}>
+        <Text style={styles.inputLabel}>Senha</Text>
+        <TextInput
+          value={password}
+          onChangeText={(input) => setPassword(input)}
+          placeholder="Insira uma senha"
+          keyboardType="default"
+          secureTextEntry={true}
+          style={styles.inputField}
+        />
+        <Text
+          style={[
+            styles.inputInvalid,
+            { display: passwordValid ? "none" : "flex" },
+          ]}>
+          Formato Invalido
+        </Text>
+      </View>
 
       {/* INPUT DE CONFIRMACAO DE SENHA */}
-      <Text style={styles.inputLabel}>Confirme a senha</Text>
-      <TextInput
-        value={confirmPassword}
-        onChangeText={(input) => setConfirmPassword(input)}
-        placeholder="Confirme a senha"
-        keyboardType="default"
-        secureTextEntry={true}
-        style={styles.inputField}
-      />
-      <Text style={[styles.inputInvalid, { display: confirmPasswordValid ? "none" : "flex" }]}>
-        As senhas não estão iguais
-      </Text>
+      <View style={styles.ctInput}>
+        <Text style={styles.inputLabel}>Confirme a senha</Text>
+        <TextInput
+          value={confirmPassword}
+          onChangeText={(input) => setConfirmPassword(input)}
+          placeholder="Confirme a senha"
+          keyboardType="default"
+          secureTextEntry={true}
+          style={styles.inputField}
+        />
+        <Text
+          style={[
+            styles.inputInvalid,
+            { display: confirmPasswordValid ? "none" : "flex" },
+          ]}>
+          As senhas não estão iguais
+        </Text>
+      </View>
 
       <Button
         onPress={onCreateAccount}
         style={styles.buttonStyle}
-        labelStyle={styles.buttonLabel}
-        contentStyle={styles.buttonContent}
-      >
+        labelStyle={styles.buttonLabel}>
         Criar Conta
       </Button>
 
@@ -138,9 +164,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
           navigation.navigate("SignIn");
         }}
         style={styles.borderlessButtonStyle}
-        labelStyle={styles.borderlessButtonLabel}
-        contentStyle={styles.borderlessButtonContent}
-      >
+        labelStyle={styles.borderlessButtonLabel}>
         Logar
       </Button>
     </View>
