@@ -6,8 +6,6 @@ import { Home, NewAuthor, NewBook, SignIn, SignUp } from "./src/screens";
 const Tab = createNativeStackNavigator();
 
 export default function App() {
-  // essa variável isLogged simula o estado de autenticação do usuário
-  // true = usuário está logado = <Home /> // false = usuário não está logado = <Login /> e <SignUp />
   const isLogged = true;
 
   return (

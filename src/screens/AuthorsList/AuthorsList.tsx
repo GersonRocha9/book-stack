@@ -61,7 +61,7 @@ const AuthorsList = ({ navigation }: any) => {
       <Title>Confira os autores cadastrados: </Title>
 
       <NewAuthorButtonContainer>
-        <NewAuthorButton onPress={() => navigation.navigate("NewAuthor")} activeOpacity={0.7}>
+        <NewAuthorButton onPress={() => navigation.navigate("NewAuthor")} testID="NewAuthorButton">
           <Feather name="plus" size={30} color="white" />
         </NewAuthorButton>
       </NewAuthorButtonContainer>

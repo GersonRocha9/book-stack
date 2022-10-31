@@ -73,7 +73,7 @@ const BooksList = ({ navigation }: any) => {
       <Title>Confira os livros cadastrados: </Title>
 
       <NewBookButtonContainer>
-        <NewBookButton onPress={() => navigation.navigate("NewBook")}>
+        <NewBookButton onPress={() => navigation.navigate("NewBook")} testID="NewBookButton">
           <Feather name="plus" size={30} color="white" />
         </NewBookButton>
       </NewBookButtonContainer>
