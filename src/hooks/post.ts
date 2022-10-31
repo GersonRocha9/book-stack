@@ -1,5 +1,23 @@
 import api from "../services/api";
 
+export async function postSignUp(data: any) {
+  const response = await api.post("/user", {
+    email: data.email,
+    password: data.password,
+  });
+
+  return response.data.data;
+}
+
+export async function postSignIn(data: any) {
+  const response = await api.post("/auth", {
+    email: data.email,
+    password: data.password,
+  });
+
+  return response.data.data;
+}
+
 export async function postNewBook(data: any) {
   const response = await api.post("/book", {
     title: data.title,

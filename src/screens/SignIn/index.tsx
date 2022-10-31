@@ -2,12 +2,15 @@ import React from "react";
 import { styles } from "./styles";
 import { Image, Text, TextInput, View } from "react-native";
 import { Button } from "react-native-paper";
+import { useMutation } from "@tanstack/react-query";
+import { postSignIn } from "../../hooks/post";
 
 const SignIn: React.FC = ({ navigation }: any) => {
   const [email, setEmail] = React.useState("");
   const [emailValid, setEmailValid] = React.useState(true);
   const [password, setPassword] = React.useState("");
   const [passwordValid, setPasswordValid] = React.useState(true);
+  const [formData, setFormData] = React.useState([{ email: "", password: "" }]);
 
   const checkEmail = () => {
     let valid: boolean;
@@ -30,9 +33,15 @@ const SignIn: React.FC = ({ navigation }: any) => {
     return valid;
   };
 
+  React.useEffect(() => {
+    setFormData([{ email: email, password: password }]);
+  }, [email, password]);
+
+  const { mutate } = useMutation(["signIn"], postSignIn);
+
   const onLogin = () => {
     if (checkEmail() && checkPassword()) {
-      // Chama e passa input pro BACK, espera a resposta e loga
+      mutate(formData);
       navigation.navigate("Home");
     }
   };

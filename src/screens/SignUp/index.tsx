@@ -2,6 +2,8 @@ import React from "react";
 import { styles } from "./styles";
 import { Text, TextInput, View } from "react-native";
 import { Button } from "react-native-paper";
+import { useMutation } from "@tanstack/react-query";
+import { postSignUp } from "../../hooks/post";
 
 const SignUp: React.FC = ({ navigation }: any) => {
   const [email, setEmail] = React.useState("");
@@ -12,6 +14,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
   const [passwordValid, setPasswordValid] = React.useState(true);
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [confirmPasswordValid, setConfirmPasswordValid] = React.useState(true);
+  const [formData, setFormData] = React.useState([{ email: "", password: "" }]);
 
   const checkEmail = () => {
     let valid: boolean;
@@ -63,9 +66,15 @@ const SignUp: React.FC = ({ navigation }: any) => {
     return valid;
   };
 
+  React.useEffect(() => {
+    setFormData([{ email: email, password: password }]);
+  }, [email, password]);
+
+  const { mutate } = useMutation(["signUp"], postSignUp);
+
   const onCreateAccount = () => {
     if (completeCheck()) {
-      // Chama e passa input pro BACK, espera a resposta e cria conta
+      mutate(formData);
       navigation.navigate("SignIn");
     }
   };
