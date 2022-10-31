@@ -16,7 +16,7 @@ export const Container = styled.View`
 `;
 
 export const BookImage = styled.Image`
-  width: 80px;
+  width: 120px;
   height: 120px;
 `;
 

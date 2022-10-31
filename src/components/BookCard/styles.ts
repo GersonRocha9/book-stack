@@ -29,6 +29,7 @@ export const BookTitle = styled.Text`
   font-size: 18px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 5px;
 `;
 
 export const BookPublicationDate = styled.Text`

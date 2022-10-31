@@ -11,18 +11,29 @@ import {
   Container,
   InfosContainer,
 } from "./styles";
+import { convertDate } from "../../utils/dateFunctions";
 
 interface BooksListProps {
   id?: number;
   author_id?: number;
   title: string;
   description?: string;
-  publication_date: string;
+  publishing_date: string;
   isbn: string;
   cover_url: string;
 }
 
-const BookCard = ({ title, publication_date, isbn, cover_url }: BooksListProps) => {
+const BookCard = ({ title, publishing_date, isbn, cover_url }: BooksListProps) => {
+  const handleDeleteBook = () => {
+    console.log("Delete book");
+  };
+
+  const handleEditBook = () => {
+    console.log("Edit book");
+  };
+
+  const convertedDate = convertDate(publishing_date);
+
   return (
     <Container>
       <BookImage
@@ -33,26 +44,16 @@ const BookCard = ({ title, publication_date, isbn, cover_url }: BooksListProps) 
       <InfosContainer>
         <BookTitle>{title}</BookTitle>
 
-        <BookPublicationDate>Ano de publicação: {publication_date}</BookPublicationDate>
+        <BookPublicationDate>Ano: {convertedDate}</BookPublicationDate>
         <BookISBN>ISBN: {isbn}</BookISBN>
       </InfosContainer>
 
       <ButtonsContainer>
-        <Button
-          onPress={() => {
-            console.log("Edit");
-          }}
-          title="Edit"
-        >
+        <Button onPress={handleEditBook} title="Edit">
           <Ionicons name="create" size={24} color="black" />
         </Button>
 
-        <Button
-          onPress={() => {
-            console.log("Delete");
-          }}
-          title="Delete"
-        >
+        <Button onPress={handleDeleteBook} title="Delete">
           <Ionicons name="trash" size={24} color="red" />
         </Button>
       </ButtonsContainer>

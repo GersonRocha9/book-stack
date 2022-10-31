@@ -10,44 +10,41 @@ import {
   Container,
   InfosContainer,
 } from "./styles";
+import { convertDate } from "../../utils/dateFunctions";
 
 interface AuthorListProps {
   id?: number;
   name: string;
-  birthdate: string;
+  birth_date: string;
   profile_photo: string;
 }
 
-const AuthorCard = ({ name, birthdate, profile_photo }: AuthorListProps) => {
+const AuthorCard = ({ name, birth_date, profile_photo }: AuthorListProps) => {
+  const handleDeleteAuthor = () => {
+    console.log("Delete Author");
+  };
+
+  const handleEditAuthor = () => {
+    console.log("Edit Author");
+  };
+
+  const convertedDate = convertDate(birth_date);
+
   return (
     <Container>
-      <BookImage
-        source={{
-          uri: profile_photo,
-        }}
-      />
+      <BookImage source={profile_photo ? { uri: profile_photo } : require("../../assets/noProfilePhoto.png")} />
       <InfosContainer>
         <BookTitle>{name}</BookTitle>
 
-        <BookPublicationDate>Data de nascimento: {birthdate}</BookPublicationDate>
+        <BookPublicationDate>{convertedDate}</BookPublicationDate>
       </InfosContainer>
 
       <ButtonsContainer>
-        <Button
-          onPress={() => {
-            console.log("Edit");
-          }}
-          title="Edit"
-        >
+        <Button onPress={handleEditAuthor} title="Edit">
           <Ionicons name="create" size={24} color="black" />
         </Button>
 
-        <Button
-          onPress={() => {
-            console.log("Delete");
-          }}
-          title="Delete"
-        >
+        <Button onPress={handleDeleteAuthor} title="Delete">
           <Ionicons name="trash" size={24} color="red" />
         </Button>
       </ButtonsContainer>
