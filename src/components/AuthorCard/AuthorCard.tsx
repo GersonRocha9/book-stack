@@ -11,17 +11,25 @@ import {
   InfosContainer,
 } from "./styles";
 import { convertDate } from "../../utils/dateFunctions";
+import { useMutation } from "@tanstack/react-query";
+import { deleteAuthor } from "../../hooks/delete";
 
 interface AuthorListProps {
-  id?: number;
+  id: string;
   name: string;
   birth_date: string;
   profile_photo: string;
 }
 
-const AuthorCard = ({ name, birth_date, profile_photo }: AuthorListProps) => {
+const AuthorCard = ({ id, name, birth_date, profile_photo }: AuthorListProps) => {
+  const { mutate } = useMutation(["deleteBook"], deleteAuthor);
+
   const handleDeleteAuthor = () => {
-    console.log("Delete Author");
+    mutate(id, {
+      onSuccess: () => {
+        alert("Autor excluído com sucesso!");
+      },
+    });
   };
 
   const handleEditAuthor = () => {

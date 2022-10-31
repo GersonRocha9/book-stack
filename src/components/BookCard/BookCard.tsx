@@ -12,9 +12,11 @@ import {
   InfosContainer,
 } from "./styles";
 import { convertDate } from "../../utils/dateFunctions";
+import { useMutation } from "@tanstack/react-query";
+import { deleteBook } from "../../hooks/delete";
 
 interface BooksListProps {
-  id?: number;
+  id: string;
   author_id?: number;
   title: string;
   description?: string;
@@ -23,9 +25,15 @@ interface BooksListProps {
   cover_url: string;
 }
 
-const BookCard = ({ title, publishing_date, isbn, cover_url }: BooksListProps) => {
+const BookCard = ({ id, title, publishing_date, isbn, cover_url }: BooksListProps) => {
+  const { mutate } = useMutation(["deleteBook"], deleteBook);
+
   const handleDeleteBook = () => {
-    console.log("Delete book");
+    mutate(id, {
+      onSuccess: () => {
+        alert("Livro excluído com sucesso!");
+      },
+    });
   };
 
   const handleEditBook = () => {
