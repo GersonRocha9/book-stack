@@ -6,17 +6,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import LottieView from "lottie-react-native";
+import { useMutation } from "@tanstack/react-query";
+import { postNewAuthor } from "../../hooks/post";
 
 interface NewAuthorProps {
   name: string;
   birth_date: string;
-  email: string;
 }
 
 const schema = yup.object({
   name: yup.string().required("O campo nome é obrigatório"),
   birth_date: yup.string().required("O campo data de nascimento é obrigatório"),
-  email: yup.string().required("O campo email é obrigatório").email("O campo e-mail deve ser um e-mail válido"),
 });
 
 const NewAuthor = ({ navigation }: any) => {
@@ -28,9 +28,11 @@ const NewAuthor = ({ navigation }: any) => {
     resolver: yupResolver(schema),
   });
 
-  const handleSaveAuthor = (data: NewAuthorProps) => {
+  const { mutate } = useMutation(["newBook"], postNewAuthor);
+
+  const onSubmit = (data: NewAuthorProps) => {
+    mutate(data);
     navigation.navigate("Home");
-    console.log(data);
   };
 
   return (
@@ -64,22 +66,6 @@ const NewAuthor = ({ navigation }: any) => {
         />
         <ErrorMessage>{errors.name?.message}</ErrorMessage>
 
-        <Label>E-mail</Label>
-        <Controller
-          control={control}
-          name="email"
-          render={({ field: { onChange } }) => (
-            <Input
-              placeholder="E-mail"
-              onChangeText={onChange}
-              style={{
-                borderColor: errors.email ? "red" : "#dcdce6",
-              }}
-            />
-          )}
-        />
-        <ErrorMessage>{errors.email?.message}</ErrorMessage>
-
         <Label>Data de nascimento</Label>
         <Controller
           control={control}
@@ -96,7 +82,7 @@ const NewAuthor = ({ navigation }: any) => {
         />
         <ErrorMessage>{errors.birth_date?.message}</ErrorMessage>
 
-        <Button onPress={handleSubmit(handleSaveAuthor)}>
+        <Button onPress={handleSubmit(onSubmit)}>
           <Text>Cadastrar</Text>
           <Feather name="arrow-right-circle" size={24} color="white" />
         </Button>

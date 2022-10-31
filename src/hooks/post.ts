@@ -11,3 +11,12 @@ export async function postNewBook(data: any) {
 
   return response.data.data;
 }
+
+export async function postNewAuthor(data: any) {
+  const response = await api.post("/author", {
+    name: data.name,
+    birth_date: data.birth_date,
+  });
+
+  return response.data.data;
+}
