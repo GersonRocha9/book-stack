@@ -6,18 +6,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import LottieView from "lottie-react-native";
+import { postNewBook } from "../../hooks/post";
+import { useMutation } from "@tanstack/react-query";
 
 interface NewBookProps {
   title: string;
-  author: string;
-  publication_date: string;
+  cover_url?: string;
+  publishing_date?: string;
   isbn: string;
 }
 
 const schema = yup.object({
   title: yup.string().required("O campo título é obrigatório"),
-  author: yup.string().required("O campo autor é obrigatório"),
-  publication_date: yup.string().required("O campo data de publicação é obrigatório"),
+  cover_url: yup.string(),
+  publishing_date: yup.string(),
   isbn: yup.string().required("O campo ISBN é obrigatório"),
 });
 
@@ -30,9 +32,11 @@ const NewBook = ({ navigation }: any) => {
     resolver: yupResolver(schema),
   });
 
-  const handleSaveBook = (data: NewBookProps) => {
+  const { mutate } = useMutation(["newBook"], postNewBook);
+
+  const onSubmit = (data: NewBookProps) => {
+    mutate(data);
     navigation.navigate("Home");
-    console.log(data);
   };
 
   return (
@@ -66,37 +70,37 @@ const NewBook = ({ navigation }: any) => {
         />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
-        <Label>Autor</Label>
+        <Label>Capa do livro</Label>
         <Controller
           control={control}
-          name="author"
+          name="cover_url"
           render={({ field: { onChange } }) => (
             <Input
-              placeholder="Autor do livro"
+              placeholder="URL da capa do livro"
               onChangeText={onChange}
               style={{
-                borderColor: errors?.author?.message ? "red" : "#dcdce6",
+                borderColor: errors?.cover_url?.message ? "red" : "#dcdce6",
               }}
             />
           )}
         />
-        <ErrorMessage>{errors.author?.message}</ErrorMessage>
+        <ErrorMessage>{errors.cover_url?.message}</ErrorMessage>
 
         <Label>Data de publicação</Label>
         <Controller
           control={control}
-          name="publication_date"
+          name="publishing_date"
           render={({ field: { onChange } }) => (
             <Input
               placeholder="Data de publicação"
               onChangeText={onChange}
               style={{
-                borderColor: errors?.publication_date?.message ? "red" : "#dcdce6",
+                borderColor: errors?.publishing_date?.message ? "red" : "#dcdce6",
               }}
             />
           )}
         />
-        <ErrorMessage>{errors.publication_date?.message}</ErrorMessage>
+        <ErrorMessage>{errors.publishing_date?.message}</ErrorMessage>
 
         <Label>ISBN</Label>
         <Controller
@@ -114,7 +118,7 @@ const NewBook = ({ navigation }: any) => {
         />
         <ErrorMessage>{errors.isbn?.message}</ErrorMessage>
 
-        <Button onPress={handleSubmit(handleSaveBook)}>
+        <Button onPress={handleSubmit(onSubmit)}>
           <Text>Cadastrar</Text>
           <Feather name="arrow-right-circle" size={24} color="white" />
         </Button>

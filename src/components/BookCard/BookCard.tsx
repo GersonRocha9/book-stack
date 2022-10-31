@@ -36,15 +36,12 @@ const BookCard = ({ title, publishing_date, isbn, cover_url }: BooksListProps) =
 
   return (
     <Container>
-      <BookImage
-        source={{
-          uri: cover_url,
-        }}
-      />
+      <BookImage source={cover_url ? { uri: cover_url } : require("../../assets/noCoverPhoto.jpeg")} />
       <InfosContainer>
         <BookTitle>{title}</BookTitle>
 
-        <BookPublicationDate>Ano: {convertedDate}</BookPublicationDate>
+        <BookPublicationDate>Ano: {publishing_date ? convertedDate : "Não cadastrado"}</BookPublicationDate>
+
         <BookISBN>ISBN: {isbn}</BookISBN>
       </InfosContainer>
 
