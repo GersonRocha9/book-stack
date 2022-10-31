@@ -7,8 +7,18 @@ import { Home, NewAuthor, NewBook, SignIn, SignUp } from "./src/screens";
 const Tab = createNativeStackNavigator();
 const queryClient = new QueryClient();
 
+import { decode, encode } from "base-64";
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+if (!global.atob) {
+  global.atob = decode;
+}
+
 export default function App() {
-  const isLogged = true;
+  const isLogged = false;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -24,6 +34,7 @@ export default function App() {
             <>
               <Tab.Screen name="SignIn" component={SignIn} />
               <Tab.Screen name="SignUp" component={SignUp} />
+              <Tab.Screen name="Home" component={Home} />
             </>
           )}
         </Tab.Navigator>

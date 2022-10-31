@@ -10,7 +10,7 @@ const SignIn: React.FC = ({ navigation }: any) => {
   const [emailValid, setEmailValid] = React.useState(true);
   const [password, setPassword] = React.useState("");
   const [passwordValid, setPasswordValid] = React.useState(true);
-  const [formData, setFormData] = React.useState([{ email: "", password: "" }]);
+  const [formData, setFormData] = React.useState({ email: "", password: "" });
 
   const checkEmail = () => {
     let valid: boolean;
@@ -24,8 +24,7 @@ const SignIn: React.FC = ({ navigation }: any) => {
 
   const checkPassword = () => {
     let valid: boolean;
-    var passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
 
     valid = passwordRegex.test(password);
     setPasswordValid(valid);
@@ -34,7 +33,7 @@ const SignIn: React.FC = ({ navigation }: any) => {
   };
 
   React.useEffect(() => {
-    setFormData([{ email: email, password: password }]);
+    setFormData({ email: email, password: password });
   }, [email, password]);
 
   const { mutate } = useMutation(["signIn"], postSignIn);
@@ -48,10 +47,7 @@ const SignIn: React.FC = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../../assets/book-stack-logo.png")}
-        style={styles.logo}
-      />
+      <Image source={require("../../../assets/book-stack-logo.png")} style={styles.logo} />
 
       {/* INPUT DE EMAIL */}
       <View style={styles.ctInput}>
@@ -63,13 +59,7 @@ const SignIn: React.FC = ({ navigation }: any) => {
           keyboardType="email-address"
           style={styles.inputField}
         />
-        <Text
-          style={[
-            styles.inputInvalid,
-            { display: emailValid ? "none" : "flex" },
-          ]}>
-          Formato Invalido
-        </Text>
+        <Text style={[styles.inputInvalid, { display: emailValid ? "none" : "flex" }]}>Formato Invalido</Text>
       </View>
 
       {/* INPUT DE SENHA */}
@@ -83,19 +73,10 @@ const SignIn: React.FC = ({ navigation }: any) => {
           secureTextEntry={true}
           style={styles.inputField}
         />
-        <Text
-          style={[
-            styles.inputInvalid,
-            { display: passwordValid ? "none" : "flex" },
-          ]}>
-          Formato Invalido
-        </Text>
+        <Text style={[styles.inputInvalid, { display: passwordValid ? "none" : "flex" }]}>Formato Invalido</Text>
       </View>
 
-      <Button
-        onPress={onLogin}
-        style={styles.buttonStyle}
-        labelStyle={styles.buttonLabel}>
+      <Button onPress={onLogin} style={styles.buttonStyle} labelStyle={styles.buttonLabel}>
         Logar
       </Button>
 
@@ -104,7 +85,8 @@ const SignIn: React.FC = ({ navigation }: any) => {
           navigation.navigate("SignUp");
         }}
         style={styles.borderlessButtonStyle}
-        labelStyle={styles.borderlessButtonLabel}>
+        labelStyle={styles.borderlessButtonLabel}
+      >
         Cadastre-se
       </Button>
     </View>

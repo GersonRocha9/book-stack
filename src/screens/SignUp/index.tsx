@@ -14,7 +14,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
   const [passwordValid, setPasswordValid] = React.useState(true);
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [confirmPasswordValid, setConfirmPasswordValid] = React.useState(true);
-  const [formData, setFormData] = React.useState([{ email: "", password: "" }]);
+  const [formData, setFormData] = React.useState({ email: "", password: "" });
 
   const checkEmail = () => {
     let valid: boolean;
@@ -37,8 +37,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
 
   const checkPassword = () => {
     let valid: boolean;
-    var passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])(?=.*\w).{8,}$/;
 
     valid = passwordRegex.test(password);
     setPasswordValid(valid);
@@ -67,7 +66,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
   };
 
   React.useEffect(() => {
-    setFormData([{ email: email, password: password }]);
+    setFormData({ email: email, password: password });
   }, [email, password]);
 
   const { mutate } = useMutation(["signUp"], postSignUp);
@@ -93,13 +92,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
           keyboardType="email-address"
           style={styles.inputField}
         />
-        <Text
-          style={[
-            styles.inputInvalid,
-            { display: emailValid ? "none" : "flex" },
-          ]}>
-          Formato Invalido
-        </Text>
+        <Text style={[styles.inputInvalid, { display: emailValid ? "none" : "flex" }]}>Formato Invalido</Text>
       </View>
 
       {/* INPUT DE CONFIRMACAO DE EMAIL */}
@@ -112,11 +105,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
           keyboardType="email-address"
           style={styles.inputField}
         />
-        <Text
-          style={[
-            styles.inputInvalid,
-            { display: confirmEmailValid ? "none" : "flex" },
-          ]}>
+        <Text style={[styles.inputInvalid, { display: confirmEmailValid ? "none" : "flex" }]}>
           Os emails não estão iguais
         </Text>
       </View>
@@ -132,13 +121,7 @@ const SignUp: React.FC = ({ navigation }: any) => {
           secureTextEntry={true}
           style={styles.inputField}
         />
-        <Text
-          style={[
-            styles.inputInvalid,
-            { display: passwordValid ? "none" : "flex" },
-          ]}>
-          Formato Invalido
-        </Text>
+        <Text style={[styles.inputInvalid, { display: passwordValid ? "none" : "flex" }]}>Formato Invalido</Text>
       </View>
 
       {/* INPUT DE CONFIRMACAO DE SENHA */}
@@ -152,19 +135,12 @@ const SignUp: React.FC = ({ navigation }: any) => {
           secureTextEntry={true}
           style={styles.inputField}
         />
-        <Text
-          style={[
-            styles.inputInvalid,
-            { display: confirmPasswordValid ? "none" : "flex" },
-          ]}>
+        <Text style={[styles.inputInvalid, { display: confirmPasswordValid ? "none" : "flex" }]}>
           As senhas não estão iguais
         </Text>
       </View>
 
-      <Button
-        onPress={onCreateAccount}
-        style={styles.buttonStyle}
-        labelStyle={styles.buttonLabel}>
+      <Button onPress={onCreateAccount} style={styles.buttonStyle} labelStyle={styles.buttonLabel}>
         Criar Conta
       </Button>
 
@@ -173,7 +149,8 @@ const SignUp: React.FC = ({ navigation }: any) => {
           navigation.navigate("SignIn");
         }}
         style={styles.borderlessButtonStyle}
-        labelStyle={styles.borderlessButtonLabel}>
+        labelStyle={styles.borderlessButtonLabel}
+      >
         Logar
       </Button>
     </View>
